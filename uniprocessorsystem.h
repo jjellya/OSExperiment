@@ -57,12 +57,12 @@ public:
     }
 
     int getPriCode(){
-        this->priCode=rand()%64+1;//自动编号;
+        this->priCode=rand()%64+20;//自动编号;
         return priCode;
     }
 
     int getTimeCode(){
-        this->timeCode=rand()%30+1;//自动编号;
+        this->timeCode=rand()%20+1;//自动编号;
         return timeCode;
     }
 };
@@ -110,8 +110,10 @@ public:
         void setPFree(Pcb pFree);
         READY getReadyQueue();
         int getRun();
+        Pcb getRunPointer();
         Pcb getPFree();
         int getAvaiable();
+        int getMode();
 
 signals:
     //自定义信号写到这里下面：
@@ -131,6 +133,20 @@ signals:
      void setReadyTextEditSRT(int name,int num);
 
      void setTextEditAvgTime(double time,int num);
+
+     void setRunTextEditPri(int pri,int num);
+     void setRunTextEditTime(int time,int num);
+
+     void setReadyTextEditPriRR(int pri,int num);
+     void setReadyTextEditPriDP(int pri,int num);
+     void setReadyTextEditPriSPN(int pri,int num);
+     void setReadyTextEditPriSRT(int pri,int num);
+
+
+     void setReadyTextEditTimeRR(int time,int num);
+     void setReadyTextEditTimeDP(int time,int num);
+     void setReadyTextEditTimeSPN(int time,int num);
+     void setReadyTextEditTimeSRT(int time,int num);
 
 
 public slots:

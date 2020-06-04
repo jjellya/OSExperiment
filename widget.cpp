@@ -114,6 +114,28 @@ Widget::Widget(QWidget *parent)
     connect(computer_SPN,&UniprocessorSystem::setTextEditAvgTime,this,&Widget::Slots_setTextEditAvgTime);
     connect(computer_SRT,&UniprocessorSystem::setTextEditAvgTime,this,&Widget::Slots_setTextEditAvgTime);
 
+    connect(computer_RR,&UniprocessorSystem::setRunTextEditPri,this,&Widget::Slots_setRunTextEditPri);
+    connect(computer_DP,&UniprocessorSystem::setRunTextEditPri,this,&Widget::Slots_setRunTextEditPri);
+    connect(computer_SPN,&UniprocessorSystem::setRunTextEditPri,this,&Widget::Slots_setRunTextEditPri);
+    connect(computer_SRT,&UniprocessorSystem::setRunTextEditPri,this,&Widget::Slots_setRunTextEditPri);
+
+    connect(computer_RR,&UniprocessorSystem::setRunTextEditTime,this,&Widget::Slots_setRunTextEditTime);
+    connect(computer_DP,&UniprocessorSystem::setRunTextEditTime,this,&Widget::Slots_setRunTextEditTime);
+    connect(computer_SPN,&UniprocessorSystem::setRunTextEditTime,this,&Widget::Slots_setRunTextEditTime);
+    connect(computer_SRT,&UniprocessorSystem::setRunTextEditTime,this,&Widget::Slots_setRunTextEditTime);
+
+    connect(computer_RR,&UniprocessorSystem::setReadyTextEditPriRR,this,&Widget::Slots_setReadyTextEditPriRR);
+    connect(computer_DP,&UniprocessorSystem::setReadyTextEditPriDP,this,&Widget::Slots_setReadyTextEditPriDP);
+    connect(computer_SPN,&UniprocessorSystem::setReadyTextEditPriSPN,this,&Widget::Slots_setReadyTextEditPriSPN);
+    connect(computer_SRT,&UniprocessorSystem::setReadyTextEditPriSRT,this,&Widget::Slots_setReadyTextEditPriSRT);
+
+    connect(computer_RR,&UniprocessorSystem::setReadyTextEditTimeRR,this,&Widget::Slots_setReadyTextEditTimeRR);
+    connect(computer_DP,&UniprocessorSystem::setReadyTextEditTimeDP,this,&Widget::Slots_setReadyTextEditTimeDP);
+    connect(computer_SPN,&UniprocessorSystem::setReadyTextEditTimeSPN,this,&Widget::Slots_setReadyTextEditTimeSPN);
+    connect(computer_SRT,&UniprocessorSystem::setReadyTextEditTimeSRT,this,&Widget::Slots_setReadyTextEditTimeSRT);
+
+
+
 }
 
 Widget::~Widget()
@@ -162,6 +184,8 @@ void Widget::on_pushButton_clicked()
 
 void Widget::Slots_setTextEditInt(int name,int num){
         string str1 = std::to_string(name);
+        if(name==-1)
+            str1="";
         QString qstr = QString::fromStdString(str1);
         switch (num) {
             case 101:   ui->lineEdit_Run_RR->setText(qstr);
@@ -414,4 +438,217 @@ void Widget::Slots_setTextEditAvgTime(double time, int num){
         default:break;
     }
 }
+
+void Widget::Slots_setRunTextEditPri(int pri,int num){
+        string str1 = std::to_string(pri);
+        if(pri==-1)
+            str1="";
+        QString qstr = QString::fromStdString(str1);
+        switch (num) {
+            case RR:   ui->lineEdit_Run_Pri_RR->setText(qstr);
+                        break;
+            case DP:   ui->lineEdit_Run_Pri_DP->setText(qstr);
+                        break;
+            case SPN:   ui->lineEdit_Run_Pri_SPN->setText(qstr);
+                        break;
+            case SRT:   ui->lineEdit_Run_Pri_SRT->setText(qstr);
+                        break;
+            default:break;
+        }
+
+}
+
+void Widget::Slots_setRunTextEditTime(int time,int num){
+        string str1 = std::to_string(time);
+        if(time==0)
+            str1="";
+        QString qstr = QString::fromStdString(str1);
+        switch (num) {
+            case RR:   ui->lineEdit_Run_Time_RR->setText(qstr);
+                        break;
+            case DP:   ui->lineEdit_Run_Time_DP->setText(qstr);
+                        break;
+            case SPN:   ui->lineEdit_Run_Time_SPN->setText(qstr);
+                        break;
+            case SRT:   ui->lineEdit_Run_Time_SRT->setText(qstr);
+                        break;
+            default:break;
+        }
+
+}
+
+
+void Widget::Slots_setReadyTextEditPriRR(int pri,int num){
+
+    string str1 = std::to_string(pri);
+    if(pri==-1)
+        str1="";
+
+    QString qstr = QString::fromStdString(str1);
+//    ui->lineEdit_Run->setText(qstr);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Pri_RR1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Pri_RR2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Pri_RR3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Pri_RR4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Pri_RR5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Pri_RR6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Pri_RR7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Pri_RR8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Pri_RR9->setText(qstr);break;
+        default:break;
+    }
+}
+
+
+void Widget::Slots_setReadyTextEditPriDP(int pri,int num){
+
+    string str1 = std::to_string(pri);
+    if(pri==-1)
+        str1="";
+
+    QString qstr = QString::fromStdString(str1);
+//    ui->lineEdit_Run->setText(qstr);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Pri_DP1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Pri_DP2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Pri_DP3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Pri_DP4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Pri_DP5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Pri_DP6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Pri_DP7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Pri_DP8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Pri_DP9->setText(qstr);break;
+        default:break;
+    }
+}
+
+void Widget::Slots_setReadyTextEditPriSPN(int pri, int num){
+
+    string str1 = std::to_string(pri);
+    if(pri==-1)
+        str1="";
+    QString qstr = QString::fromStdString(str1);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Pri_SPN1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Pri_SPN2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Pri_SPN3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Pri_SPN4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Pri_SPN5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Pri_SPN6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Pri_SPN7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Pri_SPN8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Pri_SPN9->setText(qstr);break;
+        default:break;
+    }
+}
+
+void Widget::Slots_setReadyTextEditPriSRT(int pri, int num){
+
+    string str1 = std::to_string(pri);
+    if(pri==-1)
+        str1="";
+
+    QString qstr = QString::fromStdString(str1);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Pri_SRT1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Pri_SRT2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Pri_SRT3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Pri_SRT4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Pri_SRT5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Pri_SRT6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Pri_SRT7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Pri_SRT8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Pri_SRT9->setText(qstr);break;
+        default:break;
+    }
+}
+
+
+void Widget::Slots_setReadyTextEditTimeRR(int time,int num){
+
+    string str1 = std::to_string(time);
+    if(time==0)
+        str1="";
+
+    QString qstr = QString::fromStdString(str1);
+//    ui->lineEdit_Run->setText(qstr);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Time_RR1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Time_RR2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Time_RR3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Time_RR4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Time_RR5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Time_RR6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Time_RR7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Time_RR8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Time_RR9->setText(qstr);break;
+        default:break;
+    }
+}
+
+
+void Widget::Slots_setReadyTextEditTimeDP(int time,int num){
+
+    string str1 = std::to_string(time);
+    if(time==0)
+        str1="";
+
+    QString qstr = QString::fromStdString(str1);
+//    ui->lineEdit_Run->setText(qstr);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Time_DP1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Time_DP2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Time_DP3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Time_DP4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Time_DP5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Time_DP6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Time_DP7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Time_DP8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Time_DP9->setText(qstr);break;
+        default:break;
+    }
+}
+
+void Widget::Slots_setReadyTextEditTimeSPN(int time, int num){
+
+    string str1 = std::to_string(time);
+    if(time==0)
+        str1="";
+    QString qstr = QString::fromStdString(str1);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Time_SPN1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Time_SPN2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Time_SPN3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Time_SPN4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Time_SPN5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Time_SPN6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Time_SPN7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Time_SPN8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Time_SPN9->setText(qstr);break;
+        default:break;
+    }
+}
+
+void Widget::Slots_setReadyTextEditTimeSRT(int time, int num){
+
+    string str1 = std::to_string(time);
+    if(time==0)
+        str1="";
+
+    QString qstr = QString::fromStdString(str1);
+    switch (num) {
+        case 1: ui->lineEdit_Ready_Time_SRT1->setText(qstr);break;
+        case 2: ui->lineEdit_Ready_Time_SRT2->setText(qstr);break;
+        case 3: ui->lineEdit_Ready_Time_SRT3->setText(qstr);break;
+        case 4: ui->lineEdit_Ready_Time_SRT4->setText(qstr);break;
+        case 5: ui->lineEdit_Ready_Time_SRT5->setText(qstr);break;
+        case 6: ui->lineEdit_Ready_Time_SRT6->setText(qstr);break;
+        case 7: ui->lineEdit_Ready_Time_SRT7->setText(qstr);break;
+        case 8: ui->lineEdit_Ready_Time_SRT8->setText(qstr);break;
+        case 9: ui->lineEdit_Ready_Time_SRT9->setText(qstr);break;
+        default:break;
+    }
+}
+
 

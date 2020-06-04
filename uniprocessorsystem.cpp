@@ -227,12 +227,20 @@ void UniprocessorSystem::releasePCB(Pcb &s){
 }
 
 void UniprocessorSystem::dispatch(){
-        if(readyQueue.head==NULL) {printf("[Error]:Current ready queue has not context!\n"); return;}
+        if(readyQueue.head==NULL) {
+            emit setTextEditInt(-1,mode);
+            emit setRunTextEditPri(-1,mode);
+            emit setRunTextEditTime(0,mode);
+            emit setRunProgress(0,run->needTime,mode);
+            printf("[Error]:Current ready queue has not context!\n");
+            return;}
         if(mode==RR){
 
             if(readyQueue.head!=NULL){
                 run=readyQueue.head;
                  emit setTextEditInt(run->name,mode);
+                 emit setRunTextEditPri(run->pri,mode);
+                 emit setRunTextEditTime(run->time,mode);
                 Pcb readyNext=readyQueue.head->next;
 
                 timeslice_num++;
@@ -256,6 +264,8 @@ void UniprocessorSystem::dispatch(){
                             qDebug("ReadyQueue_%d, ReadyProcess.name = %d\n",queue_i,p->name);
                             emit setReadyTextEditRR(p->name,queue_i);
                             emit setReady1ProgressRR(p->needTime-p->time,p->needTime,queue_i);
+                            emit setReadyTextEditPriRR(p->pri,queue_i);
+                            emit setReadyTextEditTimeRR(p->time,queue_i);
                             flag[queue_i]=1;
                             queue_i++;
                         }
@@ -277,6 +287,8 @@ void UniprocessorSystem::dispatch(){
                     queue_i--;
                     emit setReadyTextEditRR(-1,queue_i);
                     emit setReady1ProgressRR(0,100,queue_i);
+                    emit setReadyTextEditPriRR(-1,queue_i);
+                    emit setReadyTextEditTimeRR(0,queue_i);
                 }
                 //pcbArea.setPcbArea(run,run);
                 //Attenetion:Next one row may be cause a bug.
@@ -290,6 +302,8 @@ void UniprocessorSystem::dispatch(){
             if(readyQueue.head!=NULL){
                 run=readyQueue.head;
                 emit setTextEditInt(run->name,mode);
+                emit setRunTextEditPri(run->pri,mode);
+                emit setRunTextEditTime(run->time,mode);
                 Pcb readyNext=readyQueue.head->next;
 
                 timeslice_num++;
@@ -313,6 +327,8 @@ void UniprocessorSystem::dispatch(){
                             qDebug("ReadyQueue_%d, ReadyProcess.name = %d\n",queue_i,p->name);
                             emit setReadyTextEditDP(p->name,queue_i);
                             emit setReady1ProgressDP(p->needTime-p->time,p->needTime,queue_i);
+                            emit setReadyTextEditPriDP(p->pri,queue_i);
+                            emit setReadyTextEditTimeDP(p->time,queue_i);
                             flag[queue_i]=1;
                             queue_i++;
                         }
@@ -333,6 +349,8 @@ void UniprocessorSystem::dispatch(){
                     queue_i--;
                     emit setReadyTextEditDP(-1,queue_i);
                     emit setReady1ProgressDP(0,100,queue_i);
+                    emit setReadyTextEditPriDP(-1,queue_i);
+                    emit setReadyTextEditTimeDP(0,queue_i);
                 }
                // pcbArea.setPcbArea(run,run);
                 //Attenetion:Next one row may be cause a bug.
@@ -347,6 +365,8 @@ void UniprocessorSystem::dispatch(){
             if(readyQueue.head!=NULL){
                 run=readyQueue.head;
                 emit setTextEditInt(run->name,mode);
+                emit setRunTextEditPri(run->pri,mode);
+                emit setRunTextEditTime(run->time,mode);
                 emit setRunProgress(run->needTime-run->time,run->needTime,mode);
                 Pcb readyNext=readyQueue.head->next;
 
@@ -369,6 +389,8 @@ void UniprocessorSystem::dispatch(){
                             qDebug("ReadyQueue_%d, ReadyProcess.name = %d\n",queue_i,p->name);
                             emit setReadyTextEditSPN(p->name,queue_i);
                             emit setReady1ProgressSPN(p->needTime-p->time,p->needTime,queue_i);
+                            emit setReadyTextEditPriSPN(p->pri,queue_i);
+                            emit setReadyTextEditTimeSPN(p->time,queue_i);
                             flag[queue_i]=1;
                             queue_i++;
                         }
@@ -391,6 +413,8 @@ void UniprocessorSystem::dispatch(){
                     if(readyNext!=NULL) queue_i--;
                     emit setReadyTextEditSPN(-1,queue_i);
                     emit setReady1ProgressSPN(0,100,queue_i);
+                    emit setReadyTextEditPriSPN(-1,queue_i);
+                    emit setReadyTextEditTimeSPN(0,queue_i);
                 }
                 //Attenetion:Next one row may be cause a bug.
                 readyQueue.head=temp.head;
@@ -402,7 +426,9 @@ void UniprocessorSystem::dispatch(){
         else if(mode==SRT){
             if(readyQueue.head!=NULL){
                 run=readyQueue.head;
-                 emit setTextEditInt(run->name,mode);
+                emit setTextEditInt(run->name,mode);
+                emit setRunTextEditPri(run->pri,mode);
+                emit setRunTextEditTime(run->time,mode);
                 Pcb readyNext=readyQueue.head->next;
 
                 timeslice_num++;
@@ -424,6 +450,8 @@ void UniprocessorSystem::dispatch(){
                             qDebug("ReadyQueue_%d, ReadyProcess.name = %d\n",queue_i,p->name);
                             emit setReadyTextEditSRT(p->name,queue_i);
                             emit setReady1ProgressSRT(p->needTime-p->time,p->needTime,queue_i);
+                            emit setReadyTextEditPriSRT(p->pri,queue_i);
+                            emit setReadyTextEditTimeSRT(p->time,queue_i);
                             flag[queue_i]=1;
                             queue_i++;
                         }
@@ -444,6 +472,8 @@ void UniprocessorSystem::dispatch(){
                     queue_i--;
                     emit setReadyTextEditSRT(-1,queue_i);
                     emit setReady1ProgressSRT(0,100,queue_i);
+                    emit setReadyTextEditPriSRT(-1,queue_i);
+                    emit setReadyTextEditTimeSRT(0,queue_i);
                 }
                 //Attenetion:Next one row may be cause a bug.
                 readyQueue.head=temp.head;
@@ -483,10 +513,18 @@ int UniprocessorSystem::getRun(){
             return result;
 }
 
+Pcb UniprocessorSystem::getRunPointer(){
+    return run;
+}
+
 Pcb UniprocessorSystem::getPFree(){
         return this->pFree;
 }
 
 int UniprocessorSystem:: getAvaiable(){
         return available;
+}
+
+int UniprocessorSystem::getMode(){
+    return mode;
 }

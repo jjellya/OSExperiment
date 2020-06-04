@@ -121,6 +121,7 @@ public:
            while(computer_KIND->getAvaiable()<10){              
                 computer_KIND->dispatch();             
            }
+           computer_KIND->dispatch();
        }
 };
 
@@ -189,6 +190,19 @@ public:
 
     void Slots_setTextEditAvgTime(double time,int num);
 
+    void Slots_setRunTextEditPri(int pri,int num);
+    void Slots_setRunTextEditTime(int time,int num);
+
+    void Slots_setReadyTextEditPriRR(int pri,int num);
+    void Slots_setReadyTextEditPriDP(int pri,int num);
+    void Slots_setReadyTextEditPriSPN(int pri,int num);
+    void Slots_setReadyTextEditPriSRT(int pri,int num);
+
+
+    void Slots_setReadyTextEditTimeRR(int time,int num);
+    void Slots_setReadyTextEditTimeDP(int time,int num);
+    void Slots_setReadyTextEditTimeSPN(int time,int num);
+    void Slots_setReadyTextEditTimeSRT(int time,int num);
 
 
 private slots:
