@@ -15,9 +15,9 @@
  
 
 ## 单处理器系统的进程调度模拟实验
-[程序下载网盘地址](https://pan.baidu.com/s/1NPP1XWXHdYnNWG_DN45NyQ)
+[程序下载网盘地址](https://pan.baidu.com/s/18BUbMNT6QtY9M95VbEWiXw)
 
-提取码：s630
+提取码：t3ir
 
 本程序使用C++和 Qt5 编写.
 ### 使用说明
@@ -36,4 +36,4 @@
 
 ### 程序截图
 
-![程序截图](https://sbimg.cn/image/programpicture.kc3wG)
+[![ProgramPicture.png](https://wx1.sbimg.cn/2020/06/04/ProgramPicture.png)](https://sbimg.cn/image/kzRVj)
